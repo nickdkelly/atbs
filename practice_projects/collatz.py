@@ -20,6 +20,9 @@ def collatz(number):
     except KeyboardInterrupt:
         sys.exit()    
 
-n = input('Enter a number: ')
-while n != 1:
-    n = collatz(int(n))
+try:
+    n = int(input('Enter a number: '))
+    while n != 1:
+        n = collatz(int(n))
+except:
+    print('Please enter a valid integer.')
