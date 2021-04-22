@@ -22,46 +22,46 @@ while True:
 
 # Print currentCells on the screen:
 
-for y in range(HEIGHT):
-    for x in range(WIDTH):
-        print(currentCells[x][y], end='') # print the # or a space
-    print()
-
-# Calculate the next step's cells based on current step's cells
-
-for x in range(WIDTH):
     for y in range(HEIGHT):
-        # Get neighbouring co-ordinates
-        # `% WIDTH` ensures leftCoord is always between 0 and WIDTH -1
-        leftCoord = (x - 1) % WIDTH
-        rightCoord = (x + 1) % WIDTH
-        aboveCoord = (y - 1) % HEIGHT
-        belowCoord = (y + 1) % HEIGHT
+        for x in range(WIDTH):
+            print(currentCells[x][y], end='') # print the # or a space
+        print()
 
-        # Count number of living neighbours
-        numNeighbours = 0
+    # Calculate the next step's cells based on current step's cells
 
-        if currentCells[leftCoord][aboveCoord] == '#':
-            numNeighbours += 1 # Top left neighbour is alive.
-        if currentCells[x][aboveCoord] == '#':
-            numNeighbours += 1 # Top neighbour is alive.
-        if currentCells[rightCoord][aboveCoord] == '#':
-            numNeighbours += 1 # Top-right neighbour is alive.
-        if currentCells[leftCoord][y] == '#':
-            numNeighbours += 1 # Bottom-left neighbour is alive.
-        if currentCells[x][belowCoord] == '#':
-            numNeighbours += 1 # Bottom neighbour is alive
-        if currentCells[rightCoord][belowCoord] == '#':
-            numNeighbours += 1 # Bottom right neighbour is alive
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
+            # Get neighbouring co-ordinates
+            # `% WIDTH` ensures leftCoord is always between 0 and WIDTH -1
+            leftCoord = (x - 1) % WIDTH
+            rightCoord = (x + 1) % WIDTH
+            aboveCoord = (y - 1) % HEIGHT
+            belowCoord = (y + 1) % HEIGHT
 
-        # Set cell based on Conway's Game of Life rules
-        if currentCells[x][y] == '#' and (numNeighbours == 2 or numNeighbours == 3):
-            # Living cells with 2 or 3 neighbours stay alive:
-            nextCells[x][y] == '#'
-        elif currentCells[x][y] == ' ' and numNeighbours == 3:
-            # Dead cells with 3 neighbours come alive
-            nextCells[x][y] == '#'
-        else:
-            # Everything else dies or stays dead:
-            nextCells[x][y] == ' '
-    time.sleep(1) # Add a 1-second pause to reduce flickering                
+            # Count number of living neighbours
+            numNeighbours = 0
+
+            if currentCells[leftCoord][aboveCoord] == '#':
+                numNeighbours += 1 # Top left neighbour is alive.
+            if currentCells[x][aboveCoord] == '#':
+                numNeighbours += 1 # Top neighbour is alive.
+            if currentCells[rightCoord][aboveCoord] == '#':
+                numNeighbours += 1 # Top-right neighbour is alive.
+            if currentCells[leftCoord][y] == '#':
+                numNeighbours += 1 # Bottom-left neighbour is alive.
+            if currentCells[x][belowCoord] == '#':
+                numNeighbours += 1 # Bottom neighbour is alive
+            if currentCells[rightCoord][belowCoord] == '#':
+                numNeighbours += 1 # Bottom right neighbour is alive
+
+            # Set cell based on Conway's Game of Life rules
+            if currentCells[x][y] == '#' and (numNeighbours == 2 or numNeighbours == 3):
+                # Living cells with 2 or 3 neighbours stay alive:
+                nextCells[x][y] == '#'
+            elif currentCells[x][y] == ' ' and numNeighbours == 3:
+                # Dead cells with 3 neighbours come alive
+                nextCells[x][y] == '#'
+            else:
+                # Everything else dies or stays dead:
+                nextCells[x][y] == ' '
+time.sleep(1) # Add a 1-second pause to reduce flickering                
